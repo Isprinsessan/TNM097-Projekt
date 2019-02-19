@@ -1,0 +1,80 @@
+
+
+%% load('data/test_batch');
+image = zeros(32,32,3);
+count = 1;
+for j = 1:1:3
+    for i = 1:1:32
+        for k = 1:1:32
+            image(i,k,j) = data(10,count);
+            count = count + 1;
+        end
+        
+    end
+end
+%%
+%Section: load Images from database
+%load('data/test_batch');
+
+nrOfImages = 300;
+images = getImages(nrOfImages);
+
+%%
+%section to load in one image
+orgImg = imread('trump.jpg');
+orgImg = im2double(orgImg);
+
+%makes the images smaller, each pixel will be one 32x32
+smallImg = imgSmaller(orgImg,90);
+
+imshow(smallImg);
+
+finishimgages = images(:,:,:,i);
+%test = data2img(orgImages(:,:,:,1));
+
+
+%%
+img = data2img(orgImages(:,:,:,800));
+imshow(img);
+
+%%
+%show final image
+[height, width ,ch] = size(smallImg);
+montage(finalImages,'size',[height width]);
+
+
+%%
+
+%load('1000images.mat');
+
+% 
+% imshow(img);
+% figure
+% 
+% imshow(img2)
+% figure
+ 
+%Loopa alla bilder som ska användas och beräkna medelvärdet för L,a,b för
+%varje bild
+ for i = 1:1:size(images,4)
+    [L(i),a(i),b(i)] = GetCIELABMean(images(:,:,:,i));
+ end
+ 
+ nrOfSubImages = nrOfImages;
+ 
+
+ 
+ 
+ %Loopa igenom alla pixlar i orginalbilden
+ for h = 1:1:size(smallImg(1))
+     for w = 1:1:
+         for i = 1:1:nrOfSubImages
+
+            %Beräkna minsta DeltaE och dess index i arrayen
+            [idx, DeltaE] = GetDeltaE(smallimg, L, a, b);
+
+            %Lägg bilden med det indexet på pixelns plats
+            finishedImg(:,:,:,i) = images(:,:,:,idx);
+
+         end
+
