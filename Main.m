@@ -2,7 +2,7 @@
 %Section: load Images from database
 %load('data/test_batch');
 
-nrOfImages = 300;
+nrOfImages = 1000;
 images = getImages(nrOfImages);
 
 %%
@@ -22,8 +22,12 @@ smallImg = imgSmaller(orgImg,90);
 
 %imshow(smallImg);
 
-finishimgages = images(:,:,:,i);
+%finishimgages = images(:,:,:,i);
 %test = data2img(orgImages(:,:,:,1));
+%% 
+
+%add palette color array
+colors = getColors(20,10);
 
 
 
