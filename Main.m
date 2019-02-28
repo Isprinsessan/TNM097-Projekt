@@ -7,13 +7,20 @@ images = getImages(nrOfImages);
 
 %%
 %section to load in one image
-orgImg = imread('landscape.jpeg');
+
+%orgImg = imread('landscape.jpeg');
+%orgImg = imread('sLOTTET.jpg');
+%orgImg = imread('trump.jpg');
+orgImg = imread('BROADWAY.jpg');
+
+
 orgImg = im2double(orgImg);
+imshow(orgImg);
 
 %makes the images smaller, each pixel will be one 32x32
 smallImg = imgSmaller(orgImg,90);
 
-imshow(smallImg);
+%imshow(smallImg);
 
 finishimgages = images(:,:,:,i);
 %test = data2img(orgImages(:,:,:,1));
@@ -59,14 +66,31 @@ finishimgages = images(:,:,:,i);
          
      end
  end
+
 %%
 %show final image
-[height, width ,ch] = size(smallImg);
-montage(finishedImg,'size',[height width]);
-figure
-imshow(smallImg);
+% [height, width ,ch] = size(smallImg);
+% imgFinished = montage(finishedImg,'size',[height width]);
+% figure
+% imshow(smallImg);
 
 %%
 %see a small img
-img = data2img(orgImages(:,:,:,800));
-imshow(img);
+% img = data2img(orgImages(:,:,:,800));
+% imshow(img);
+
+
+
+%%
+%Create the final montage image
+FinalImg = CreateFinalImg(smallImg, finishedImg);
+
+%imshow(FinalImg);
+%%
+%MyMontage = get(imgFinished, 'CData');
+%imwrite(imgFinished, 'FancyName.tif', 'tif');
+
+[quality, resizedImg] = QualityTest(orgImg, FinalImg, 50);
+disp(quality)
+figure
+imshow(resizedImg);

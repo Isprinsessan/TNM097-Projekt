@@ -1,6 +1,5 @@
 function [ out_img ] = getOneImg( nr )
-%UNTITLED2 Summary of this function goes here
-%   Detailed explanation goes here
+
 load('data/test_batch');
 
 count = 1;

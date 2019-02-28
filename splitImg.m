@@ -15,8 +15,6 @@ images = zeros(sizeImg,sizeImg,3,numberOfImages);
 
 n = 1;
    
-   
-
 for h = 1:sizeImg:orgHeight
 
     for w = 1:sizeImg:orgWidth
