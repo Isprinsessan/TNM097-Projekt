@@ -1,4 +1,4 @@
-function [ return_index ] = FindBestImg( org_img, smallImg, images, DeltaE, DeltaMin, nrOfImages, testImg)
+function [ return_index ] = FindBestImg(images, DeltaE, DeltaMin, testImg)
 
     %Find index for lowest Delta value
     for i = 1:1:size(DeltaE, 2)
@@ -12,10 +12,10 @@ function [ return_index ] = FindBestImg( org_img, smallImg, images, DeltaE, Delt
     ssimArray(:,:,:,1) = images(:,:,:,idx);
     indexArray(1) = idx;
     count = 2;
-    threshold = 10.0;
+    threshold = 1.0;
    
     
-    for j = 1:1:20
+    for j = 1:1:size(DeltaE, 2)
          
         if( abs(DeltaE(j) - DeltaMin) < threshold)
         
