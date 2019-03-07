@@ -156,6 +156,6 @@ imshow(resizedImg);
 trump = im2double(imread('trump.jpg'));
 imshow('trump.jpg');
 hold on
-[X,map] = rgb2ind(trump, 50); 
+[X,map] = rgb2ind(trump, 500); 
 colormap(map)
 colorbar('Ticks',[])

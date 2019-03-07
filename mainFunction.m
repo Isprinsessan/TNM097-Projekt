@@ -17,7 +17,6 @@ load('images.mat');
 
 %%
 %section to load in one image
-
 orgImg = im2double(orgImg);
 imshow(orgImg);
 
