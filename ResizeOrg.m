@@ -12,7 +12,7 @@ countH = 0;
 countW = 0;
 
 
-while (height < OrgWidth)
+while (height < OrgHeight)
     
     %If the height times the number of pixels required is larger than the
     %original height, this is the height the image will be resized to
@@ -32,8 +32,7 @@ while(width < OrgWidth)
 end
 
 %Resize the original image
-out_img = resize(org_img, [height, width]);
-
+out_img = imresize(org_img, [height, width]);
 
 end
 
