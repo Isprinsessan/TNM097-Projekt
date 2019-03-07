@@ -9,4 +9,4 @@ orgImg = imread('landscape.jpeg');
 % 2 100images that depends on orgImgs colors
 % 3 200images from colorspectrum
 
-newImg = mainFunction(orgImg,3);
+newImg = mainFunction(orgImg,1);

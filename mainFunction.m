@@ -58,7 +58,7 @@ elseif(option == 2)
 [X,cMap] = rgb2ind(orgImg, 100); 
 imagesResized = DivideDBColor(cMap,images,L,a,b);
 
-
+c = 10
  for i = 1:1:size(imagesResized,4)
     [LS(i),aS(i),bS(i)] = GetCIELABMean(imagesResized(:,:,:,i));
  end
