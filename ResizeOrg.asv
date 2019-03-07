@@ -1,0 +1,29 @@
+function [ out_img ] = ResizeOrg( org_img, nrOfPixels )
+%Resize the original image so that its height and width is evenly divideable by the number of pixels   
+
+
+OrgHeight = size(org_img, 1);
+OrgWidth = size(org_img, 2);
+height = 0;
+width = 0;
+countH = 0;
+countW = 0;
+
+while (height < OrgWidth)
+    if(countH*nrOfPixels >= OrgHeight)
+        height = countH*nrOfPixels;
+    end      
+end
+
+
+while(width < OrgWidth)
+    if(countW*nrOfPixels >= OrgWidth)
+        width = countW*nrOfPixels;
+    end      
+end
+
+out_img = resize(org_img, [height, width]);
+
+
+end
+

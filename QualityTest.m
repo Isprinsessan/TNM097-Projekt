@@ -1,9 +1,14 @@
 function [quality, resizedImg] = QualityTest(original_img, reproduced_img, viewDist)
+%Function to check the quality of the reproduced_img compared to
+%original_img on a certain viewDist, using SCIELAB
 
+    %Change the viewingdistance from cm to inches
     viewingDistance = viewDist/2.5;
 
+    %Get the degree per sample
     DegPerSamp = visualAngle(-1,viewingDistance,300,1);
     
+    %Create a white point
     whitePoint = [95.05,100,108.9];
     
     %Store the dimensions of the original image

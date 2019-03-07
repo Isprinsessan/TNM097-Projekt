@@ -1,5 +1,5 @@
 function [ L,a,b ] = GetCIELABMean( image )
-    
+%Hämta medelvärdet för L, a och b för bilden
 
     %Gör om orginalbilden till lab
     imgLAB = rgb2lab(image);

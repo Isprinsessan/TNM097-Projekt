@@ -1,6 +1,5 @@
 function [ return_index ] = FindBestImg(images, DeltaE, DeltaMin, testImg)
-%Finds the image in the array images that has the most structural
-%similarities as testImg while still having an acceptable color similarity
+%Finds the best image in the array images
 
 
     %Find index for lowest Delta value

@@ -3,10 +3,13 @@ function [ idx, DeltaMin, DeltaE] = GetDeltaE( img, L, a, b )
     %Hämtar antalet bilder som orginalbilden ska jämföras med
     nrOfImg = size(L, 2);
     
+    %Gör om bilden från rgb till lab
     imgLAB = rgb2lab(img);
 
+    %Tröskelvärde
     DeltaMin = 10000;
     
+    %Skapa arrayen av DeltaE, ett värde för varje bild
     DeltaE = zeros(nrOfImg);
     
     %Loopa igenom alla bilderna

@@ -20,11 +20,16 @@ load('images.mat');
 orgImg = im2double(orgImg);
 imshow(orgImg);
 
-PixelDimensions = 90;
+PixelDimensions = 80;
 
 %makes the images smaller, each pixel will be one 32x32
 smallImg = imgSmaller(orgImg,PixelDimensions);
 
+%Resize the original image based on the amount of images per dimension. For
+%the SSIM
+orgImg = ResizeOrg(orgImg, PixelDimensions);
+
+abcd = size(orgImg);
 %imshow(smallImg);
 
 %% 
@@ -110,19 +115,26 @@ imagesResized = DivideDBColor(colors,images,L,a,b);
  end
 elseif(option == 4)
  
+     %Get the array of the best color images
      colors = getColors(20,10);
      imagesResized = DivideDBColor(colors,images,L,a,b);
      
+     %Get LAB-means for each image in the color array
      for i = 1:1:size(imagesResized,4)
         [LR(i),aR(i),bR(i)] = GetCIELABMean(imagesResized(:,:,:,i));
      end
      
+     %Divide the original image into smaller images so that the structural
+     %similarities can be calculated
      testImg = DivideImg(orgImg, smallImg, size(colors, 1));
-     size(imagesResized, 4);
-     %Loopa igenom alla pixlar i orginalbilden
-     count = 1;
+     
+     %Dispaly that the function has started
      procent = 0;
      disp(procent + "%");
+     
+     count = 1;
+     
+     %Loopa igenom alla pixlar i orginalbilden
      for h = 1:1:size(smallImg,1)
          for w = 1:1:size(smallImg,2)
 
@@ -137,6 +149,8 @@ elseif(option == 4)
                 count = count + 1;
 
          end
+         
+            %Variabel för att se hur långt funktionen har kommit
             procent = (h/size(smallImg, 1))*100;
             disp(procent + "%");
             
