@@ -20,6 +20,7 @@ load('images.mat');
 orgImg = im2double(orgImg);
 imshow(orgImg);
 
+%chooses sie of resize
 PixelDimensions = 90;
 
 %makes the images smaller, each pixel will be one 32x32
@@ -57,7 +58,10 @@ if(option == 1)
 %%
 %Make the database smaller depending on orgimage colorbase
 elseif(option == 2)
+%gets 100 colors from ogImg and adds to array cMAP
 [X,cMap] = rgb2ind(orgImg, 100); 
+
+%divides the small images to have one image for each color
 imagesResized = DivideDBColor(cMap,images,L,a,b);
 
 c = 10
@@ -85,10 +89,12 @@ c = 10
 %Make the database smaller depending on colorarray
 %add palette color array
 elseif(option==3)
+%gets 200 colors from colorspectrum
 colors = getColors(20,10);
+%take out one image for each color
 imagesResized = DivideDBColor(colors,images,L,a,b);
 
-
+%gets L a b for the new small images array
  for i = 1:1:size(imagesResized,4)
     [LS(i),aS(i),bS(i)] = GetCIELABMean(imagesResized(:,:,:,i));
  end
