@@ -60,7 +60,7 @@ elseif(option == 2)
 [X,cMap] = rgb2ind(orgImg, 100); 
 imagesResized = DivideDBColor(cMap,images,L,a,b);
 
-c = 10
+
  for i = 1:1:size(imagesResized,4)
     [LS(i),aS(i),bS(i)] = GetCIELABMean(imagesResized(:,:,:,i));
  end
@@ -121,8 +121,6 @@ elseif(option == 4)
      size(imagesResized, 4);
      %Loopa igenom alla pixlar i orginalbilden
      count = 1;
-     procent = 0;
-     disp(procent + "%");
      for h = 1:1:size(smallImg,1)
          for w = 1:1:size(smallImg,2)
 
@@ -137,10 +135,9 @@ elseif(option == 4)
                 count = count + 1;
 
          end
-            procent = (h/size(smallImg, 1))*100;
-            disp(procent + "%");
-            
-         
+         if(mod(h,135) == 0)
+            disp( "");
+         end
      end
 
 end
