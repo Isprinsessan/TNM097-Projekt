@@ -16,7 +16,6 @@ function [ out_img ] = DivideImg( org_img, smallImg)
     n = 1;
     
     NumberOfImages = (height/NumberOfImgHeight) * (width/NumberOfImgWidth);
-    
     out_img = zeros(NumberOfImgHeight, NumberOfImgWidth, 3, NumberOfImages);
     size(org_img)
     %Loop through all the segments

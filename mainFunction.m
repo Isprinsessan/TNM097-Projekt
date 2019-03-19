@@ -70,6 +70,10 @@ c = 10
  for i = 1:1:size(imagesResized,4)
     [LS(i),aS(i),bS(i)] = GetCIELABMean(imagesResized(:,:,:,i));
  end
+
+ %Divide the original image into smaller images so that the structural
+ %similarities can be calculated
+ testImg = DivideImg(orgImg, smallImg);
  
  %Loopa igenom alla pixlar i orginalbilden
  count = 1;
@@ -78,10 +82,13 @@ c = 10
          
 
             %Beräkna minsta DeltaE och dess index i arrayen
-            [idx, DeltaE] = GetDeltaE(smallImg(h,w,:), LS, aS, bS);
+            [idx, DeltaE, DeltaEArray] = GetDeltaE(smallImg(h,w,:), LS, aS, bS);
+           
+            %Kolla vilken bild som har mest strukturella likheter
+            index = FindBestImg(imagesResized, DeltaEArray, DeltaE, testImg(:,:,:,count));
 
             %Lägg bilden med det indexet på pixelns plats
-            finishedImg(:,:,:,count) = imagesResized(:,:,:,idx);
+            finishedImg(:,:,:,count) = imagesResized(:,:,:, index);
             count = count + 1;
          
      end
@@ -172,10 +179,10 @@ imshow(FinalImg);
 %MyMontage = get(imgFinished, 'CData');
 %imwrite(imgFinished, 'FancyName.tif', 'tif');
 
-[quality, resizedImg] = QualityTest(orgImg, FinalImg, 50);
+[quality, resizedImg] = QualityTest(orgImg, FinalImg, 100);
 disp(quality)
-figure
-imshow(resizedImg);
+%figure
+%imshow(resizedImg);
 
 img_out = FinalImg;
 
